@@ -8,8 +8,8 @@
           <template v-slot:option="option" class="flex items-center my-2 bg-pink-600" :value="option.title" >
             <span :class="option.icon"></span>
             <p class="flex flex-wrap">
-              <img v-if="option.cardImage" :src="option.cardImage" class="w-6"/>
-                  <span class="pl-2">{{ option.title }}</span>
+              <img v-if="option.imgSrc" :src="option.imgSrc" class="w-6"/>
+                  <span class="pl-2">{{ option.name }}</span>
               </p>
           </template>
         </v-select>
@@ -31,6 +31,9 @@ import {tokens} from "./../../store/modules/exchange_tokens/tokens"
 export default {
   name: 'RevokeAddress',
   components: { vSelect },
+  mounted() {
+    console.log(tokens)
+  },
   data() {
     return {
       address: '',
@@ -39,15 +42,15 @@ export default {
       showField: false,
       options: [
         {
-          title: "Binance Cardano",
-          cardImage: "https://openfi.dev/tokens/default/AAVE.png"
+          name: "Binance Cardano",
+          imgSrc: "https://openfi.dev/tokens/default/AAVE.png"
         },
         {
-          title: "Binance Cardano",
-          cardImage: "https://openfi.dev/tokens/default/AAVE.png"
+          name: "Binance Cardano",
+          imgSrc: "https://openfi.dev/tokens/default/AAVE.png"
         },
         {
-          title: "Custom"
+          name: "Custom"
         }
       ]
     }
@@ -112,6 +115,10 @@ export default {
 
 .vs__dropdown-option--highlight {
   background: rgba(0, 0, 0, 0.1);
+}
+
+.dark .vs__dropdown-menu {
+  background: rgb(49, 53, 71) !important;
 }
 
 </style>
